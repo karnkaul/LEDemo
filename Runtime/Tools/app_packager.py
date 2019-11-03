@@ -2,6 +2,7 @@ from shutil import rmtree
 import datetime
 import os
 import sys
+sys.path.insert(1, './LittleEngine/Tools')
 import asset_cooker
 import packager
 
@@ -9,7 +10,6 @@ os.chdir(sys.path[0])
 
 ledemo_game_manifest = './LEDemo.game.json'
 ledemo_zip_manifest = './LEDemo.zip.json'
-littlengine_zip_manifest = './LittleEngine.zip.json'
 
 version = '0.0'
 cook = False
@@ -25,9 +25,6 @@ def init():
 	if (not os.path.isfile(ledemo_zip_manifest)):
 		error = True
 		print('\nERROR: ' + ledemo_zip_manifest + ' missing!')
-	if (not os.path.isfile(littlengine_zip_manifest)):
-		error = True
-		print('\nERROR: ' + littlengine_zip_manifest + ' missing!')
 	if (error):
 		return False
 	now = str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M'))
@@ -44,12 +41,11 @@ def call(version, cook_assets):
 			print(fatal_error)
 			return False
 	if (packager.call(ledemo_game_manifest, packager.out_path + '/Intermediate') == 0):
-		if (packager.call(ledemo_zip_manifest, packager.out_path + '/Intermediate') == 0):
-			if (packager.call(littlengine_zip_manifest, packager.out_path, version) == 0):
-				print('\n  All packaging completed successfully\n')
-				return True
-			else:
-				print('\n  Errors encountered\n')
+		if (packager.call(ledemo_zip_manifest, packager.out_path, version) == 0):
+			print('\n  All packaging completed successfully\n')
+			return True
+		else:
+			print('\n  Errors encountered\n')
 	return False
 
 def run():

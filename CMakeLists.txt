@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.13.0 FATAL_ERROR)
 
-set(CMAKE_BUILD_TYPE Debug)
+if(NOT CMAKE_BUILD_TYPE)
+	set(CMAKE_BUILD_TYPE Debug)
+endif()
 
 project(LEDemo C CXX)
 
@@ -9,9 +11,9 @@ project(LEDemo C CXX)
 ################################################################################
 # Init/Update Submodules
 find_package(Git QUIET)
-if(GIT_FOUND AND EXISTS "${CMAKE_SOURCE_DIR}/../.git")
+if(GIT_FOUND AND EXISTS "${CMAKE_SOURCE_DIR}/.git")
 	option(UPDATE_SUBMODULES "Init/Update submodules during generation" ON)
-	if(UPDATE_SUBMODULES)
+	if(UPDATE_SUBMODULES AND NOT SUBMODULES_UPDATED)
 		message(STATUS "Updating git submodules...")
 		execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive
 			WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
@@ -19,6 +21,8 @@ if(GIT_FOUND AND EXISTS "${CMAKE_SOURCE_DIR}/../.git")
 		)
 		if(NOT UPDATE_SUBMODULES_RESULT EQUAL "0")
 			message(FATAL_ERROR "git submodule update failed!")
+		else()
+			set(SUBMODULES_UPDATED 1)
 		endif()
 	endif()
 endif()

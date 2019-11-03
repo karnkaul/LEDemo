@@ -44,7 +44,13 @@ mkdir -p $1_/Contents/MacOS
 cp $1 $1_/Contents/MacOS/$1
 cp Resources/Info.plist $1_/Contents/
 cp -r Frameworks $1_/Contents/MacOS/
-cp -r Lib $1_/Contents/MacOS/
+if [[ "$1" == *"-Debug" ]]; then
+    DYLIBS=$(find . -name "*-d*.dylib")
+else
+    DYLIBS=$(find . -name "*.dylib" -not -name "*-d*.dylib")
+fi
+mkdir $1_/Contents/MacOS/Lib
+cp $DYLIBS $1_/Contents/MacOS/Lib
 if [ -f Resources/Icon.icns ]; then
     mkdir -p $1_/Contents/Resources 
     cp Resources/Icon.icns $1_/Contents/Resources/

@@ -31,18 +31,14 @@
 			"destination": "Linux/LEDemo.desktop"
 		},
 		{
-			"source": "../LEDemo.app.tar.gz",
-			"destination": "MacOSX/LEDemo.app.tar.gz"
-		},
-		{
-			"source": "../GameAssets.cooked",
+			"source": "../Resources/GameAssets.cooked",
 			"destination": "GameAssets.cooked",
 			"isRequired": "True"
 		}
 	],
 	"directories": [
 		{
-			"source": "../GameMusic",
+			"source": "../Resources/GameMusic",
 			"destination": "GameMusic",
 			"isRequired": "True"
 		}

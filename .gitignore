@@ -1,6 +1,5 @@
 # Directories
 **/__pycache__/*
-**/SourceArt/*
 _Build/*
 out/*
 Runtime/Frameworks/*
@@ -21,7 +20,7 @@ Source/ThirdParty/SFML/*
 !Runtime
 Runtime/*
 !Runtime/Resources
-!Runtime/Utils
+!Runtime/Tools
 !Runtime/.game.conf
 !Runtime/InputMap.txt
 !Runtime/Settings.txt

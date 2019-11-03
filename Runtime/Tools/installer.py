@@ -65,14 +65,14 @@ def process_archive():
 		for zip_info in zip_infos:
 			if zip_info.filename.startswith('GameMusic/'):
 				game_music_found = True
-				targets.append(Target(zip_info, install_dir))
+				targets.append(Target(zip_info, install_dir + '/Resources'))
 		if not game_music_found:
 			fatal_error = files_missing_msg
 		if (not 'GameAssets.cooked' in contents):
 			fatal_error = files_missing_msg
 		else:
 			zip_info = archive.getinfo('GameAssets.cooked')
-			targets.append(Target(zip_info, install_dir))
+			targets.append(Target(zip_info, install_dir + '/Resources'))
 
 def process_archive_arch():
 	global fatal_error

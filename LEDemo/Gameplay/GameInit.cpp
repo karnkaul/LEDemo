@@ -15,12 +15,12 @@ extern Fixed g_maxParticlesScale;
 
 bool GameInit::Init(s32 argc, char** argv)
 {
-	OS::Env()->SetVars(argc, argv, {GameLoop::IDs::COOKED_ASSETS.c_str(), GameLoop::MAIN_MANIFEST_FILE.c_str()});
+	OS::Env()->SetVars(argc, argv, {GameLoop::Res::COOKED_ASSETS.c_str(), GameLoop::Res::MAIN_MANIFEST_FILE.c_str()});
 	GameConfig& config = GameConfig::Instance();
 	config.Init();
 #if !defined(SHIPPING)
 	LOG_D("[GameLoop] Loading config...");
-	config.Load(OS::Env()->FullPath(GameLoop::GAME_CONFIG_FILE.c_str()));
+	config.Load(OS::Env()->FullPath(GameLoop::Res::GAME_CONFIG_FILE.c_str()));
 #endif
 
 	const auto& settings = GameSettings::Instance();

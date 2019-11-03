@@ -1,6 +1,6 @@
 # Little Engine Demo
 
-<img align="right" src="https://github.com/karnkaul/LittleEngine/blob/dev/Source/App/App/Resources/Icon.png" width="64" />
+<img align="right" src="https://github.com/karnkaul/LEDemo/blob/master/LEDemo/Resources/Icon.png" width="64" />
 
 Written in **C++17**, utilising [**SFML**](https://www.sfml-dev.org/) and [**PhysicsFS**](https://icculus.org/physfs/), [Little Engine](https://github.com/karnkaul/LittleEngine) is a 2D game engine hobby project with little defined ambition or scope; and this repository demonstrates an example game using it.
 
@@ -9,7 +9,7 @@ Written in **C++17**, utilising [**SFML**](https://www.sfml-dev.org/) and [**Phy
 >*Note: Visit the LittleEngine submodule [here](https://github.com/karnkaul/LittleEngine)!*
 
 ### Installation
-LEDemo pre-releases containing a demo game with Win64, Linux-x64, and MacOSX binaries can be found [here](https://github.com/karnkaul/LEDemo/releases).
+LEDemo pre-releases containing a demo game with Win64, Linux-x64, Linux-ARMv8 binaries can be found [here](https://github.com/karnkaul/LEDemo/releases).
 
 #### Requirements
 1. x64 CPU with at least two threads
@@ -21,13 +21,13 @@ LEDemo pre-releases containing a demo game with Win64, Linux-x64, and MacOSX bin
     1. MacOSX: Python 3 (app bundles are unsigned; `installer.py` eases the UX)
 
 #### Installing LEDemo
-1. Obtain the game zip (present inside a [GitHub Release](https://github.com/karnkaul/LittleEngine/releases) zip)
+1. Obtain the game zip (present inside a [GitHub Release](https://github.com/karnkaul/LEDemo/releases) zip)
 1. Unzip it to the installation directory and run `installer.py` via Python 3 (or unzip ".game" manually and copy the contents of "[Your OS]" into the installation directory)
 
 > *Note: OSX builds are in alpha and may not be stable.*
 
 ### Development
-Visit the [Little Engine wiki](https://github.com/karnkaul/LittleEngine/wiki/Development) for more detailed and per-platform instructions.
+Visit the [Little Engine wiki](https://github.com/karnkaul/LittleEngine/wiki/Development) for more detailed and per-platform instructions. `LEDemo` or any other game project just needs to add `LittleEngine` as a library dependency, setup game initialisation through the API (and global variables) in `GameLoop`, and return `GameLoop::Run()` to the OS.
 
 #### Requirements
 1. x64 (ARMv8 is supported but not packaged) multi-threaded target
@@ -47,18 +47,17 @@ Quick Start:
     1. Set working directory to `Runtime`
     1. Debug/run the built/installed executable
 
-==============
-TODO: Record and update link
-==============
-[Short video](https://youtu.be/lZ0zqhNs4mI) demonstrating full project setup from scratch on Linux (v0.4.10.0).
-==============
+[Short video](https://youtu.be/wwEubcOixGE) demonstrating full project setup from scratch on Linux (v0.5.0.0).
 
 #### Troubleshooting
 **"openal32.dll not found"**
+
 **"Could not determine Runtime path" Assert**
+
 Ensure working directory is "Runtime" for the `App` target.
 
 **"Default font is null" Assert**
+
 Ensure `Resources` submodule is up-to-date, and `GameAssets/Fonts/Default.ttf` is present.
 
 ### Contact

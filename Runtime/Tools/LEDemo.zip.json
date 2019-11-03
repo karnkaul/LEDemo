@@ -1,6 +1,7 @@
 {
 	"zipName": "LEDemo",
 	"zipExtension": ".zip",
+	"compress": "True",
 	"files": [
 		{
 			"source": "../Redist/Intermediate/LEDemo.game",
