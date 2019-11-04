@@ -60,28 +60,32 @@ source_group(App "${CMAKE_CURRENT_BINARY_DIR}" FILES ${GENERATED_FILES})
 list(TRANSFORM SOURCES PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/")
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SOURCES})
 set(ALL_FILES ${SOURCES} ${GENERATED_FILES})
-set(EXE_NAME LEDemo$<$<CONFIG:Debug>:-$<CONFIG>>${EXE_SUFFIX})
-add_le_executable(${EXE_NAME} "${ALL_FILES}")
-set_property(TARGET ${PROJECT_NAME} PROPERTY VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/../Runtime")
-set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
+set(EXE_NAME ${PROJECT_NAME}$<$<CONFIG:Debug>:-$<CONFIG>>${EXE_SUFFIX})
+add_le_executable(${PROJECT_NAME} ${EXE_NAME} "${ALL_FILES}")
+set_property(TARGET ${PROJECT_NAME} PROPERTY VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Runtime")
+set_property(DIRECTORY ${CMAKE_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
 
 ################################################################################
 # Dependencies
 ################################################################################
 add_dependencies(${PROJECT_NAME}
-	Engine
+	LittleEngine
 )
 
 ################################################################################
 # Libraries
 ################################################################################
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+	set(EXE_SUFFIX ".lx" CACHE INTERNAL "" FORCE)
+	if(CMAKE_SYSTEM_PROCESSOR MATCHES "arm")
+		set(EXE_SUFFIX ".lxa" CACHE INTERNAL "" FORCE)
+	endif()
 	target_link_libraries(${PROJECT_NAME} PUBLIC
 		stdc++
 	)
 endif()
 target_link_libraries(${PROJECT_NAME} PUBLIC
-	Engine
+	LittleEngine
 )
 
 set(RESOURCES
